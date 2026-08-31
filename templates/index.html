@@ -1,0 +1,30 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AWS Python Web App</title>
+</head>
+
+<body>
+
+    <h1>AWS Python Web Application</h1>
+
+    <p>Running with Flask + Docker + AWS ECS</p>
+
+    <button onclick="getMessage()">Call API</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function getMessage() {
+            const response = await fetch("/api/hello");
+            const data = await response.json();
+
+            document.getElementById("result").innerText =
+                data.message;
+        }
+    </script>
+
+</body>
+</html>
+```
