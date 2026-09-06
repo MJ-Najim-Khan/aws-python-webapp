@@ -1,31 +1,27 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AWS Python Web Application</title>
-</head>
-<body>
-    <h1>AWS Python Web Application</h1>
-    <p>Running with Flask + Docker + AWS ECS</p>
-    <p>API endpoint: <a href="/hello">/hello</a></p>
-</body>
-</html>
-"""
+    return render_template("index.html")
 
 
-@app.route("/hello", methods=["GET"])
+@app.route("/api/hello")
 def hello():
     return jsonify({
-        "message": "Hello from ECS Fargate!",
-        "application": "Python Web App",
+        "message": "Hello from Python Flask!",
         "status": "success"
+    })
+
+
+@app.route("/api/info")
+def info():
+    return jsonify({
+        "application": "AWS Python Web App",
+        "platform": "Docker",
+        "deployment": "ECS"
     })
 
 
